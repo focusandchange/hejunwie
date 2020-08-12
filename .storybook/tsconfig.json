@@ -1,0 +1,22 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "noEmit": false
+    },
+    "include": [
+        "../stories"
+    ],
+    "parserOptions": {
+        "project": [
+            "tsconfig.json",
+            ".storybook/tsconfig.json"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "build",
+        ".storybook"
+    ]
+    // 其他配置根据实际情况修改
+}
