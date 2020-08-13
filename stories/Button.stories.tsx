@@ -28,7 +28,7 @@ stories.add("Button", () => {
       setLoading(false);
     }, 1000);
   }
-  const getLoading = onClick;
+
   return (
     <Button
       color={color}

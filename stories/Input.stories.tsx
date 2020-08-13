@@ -1,5 +1,5 @@
 import { storiesOf } from "@storybook/react";
-import React from "react";
+import React, { useState } from "react";
 import Input from "../src/components/son/InputComponent";
 const stories = storiesOf("components", module);
 
@@ -13,4 +13,21 @@ stories.addParameters({
   },
 });
 
-stories.add("Input", () => <Input />);
+stories.add("Input", () => {
+  const [error, setError] = useState(false);
+  const [value, setValue] = useState("Discount code");
+  function onPressEnter() {
+    alert(value);
+  }
+  const onChange = (value: string) => {
+    setValue(value);
+  };
+  return (
+    <Input
+      error={error}
+      onPressEnter={onPressEnter}
+      onChange={onChange}
+      value={value}
+    />
+  );
+});
