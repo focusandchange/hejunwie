@@ -1,7 +1,7 @@
 const path = require("path");
 module.exports = {
   // 指定您编写的故事文件
-  stories: ["../stories/*.stories.tsx"],
+  stories: ["../src/**/*.stories.tsx"],
 
   // 单独的 webpack 配置
   webpackFinal: async (config) => {

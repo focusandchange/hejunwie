@@ -20,6 +20,8 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src",
+    "src/components/Button/Button.stories.tsx",
+    "src/components/Button/Button.stories.tsx"
   ]
 }

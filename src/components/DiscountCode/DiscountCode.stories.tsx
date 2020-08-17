@@ -1,7 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import Product from "../src/components/Product";
-const stories = storiesOf("Base", module);
+import { DiscountCode } from "./DiscountCode";
+
+const stories = storiesOf("DiscountCode", module);
 
 stories.addParameters({
   info: {
@@ -13,4 +14,6 @@ stories.addParameters({
   },
 });
 
-stories.add("example2", () => <Product />);
+stories.add("折扣", () => {
+  return <DiscountCode />;
+});

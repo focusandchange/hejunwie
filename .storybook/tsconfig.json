@@ -4,7 +4,7 @@
         "noEmit": false
     },
     "include": [
-        "../stories"
+        "../src/components/",
     ],
     "parserOptions": {
         "project": [
