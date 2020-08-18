@@ -92,6 +92,12 @@ const InputComponent = styled.input<{
         }
       `;
   }};
+
+  &:focus {
+    outline: none;
+    border-color: #a26b25;
+    box-shadow: 0 0 0 1px #a26b25;
+  }
 `;
 
 const LabelContent = styled.div<{
@@ -135,11 +141,9 @@ const LabelContent = styled.div<{
         transform: none;
         opacity: 1;
       `;
-
     if (props.value == "" && props.type == "email")
       return css`
         transform: translateY(3px);
-
         opacity: 0;
       `;
     if (
@@ -150,7 +154,6 @@ const LabelContent = styled.div<{
     )
       return css`
         transform: translateY(3px);
-
         opacity: 0;
       `;
   }};

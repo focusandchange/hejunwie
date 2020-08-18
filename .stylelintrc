@@ -7,7 +7,9 @@
   "plugins": [
     "stylelint-order"
   ],
-  "rules": {"value-keyword-case": [{
+  "rules": 
+{"value-keyword-case": [{
       ignoreProperties: ["backgroundHoverColor"]
     }, "lower"]}
+
 }
