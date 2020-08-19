@@ -3,33 +3,38 @@ import styled, { keyframes, css } from "styled-components";
 
 // Button ?
 const ButtonWrap = styled.button<ButtonProps>`
+  ${(props) => {
+    return [
+      props.adapter &&
+        css`
+          @media (max-width: 749px) {
+            width: 100%;
+          }
+        `,
+    ];
+  }};
+
   position: relative;
+
   display: ${(props) => (props.adapter ? "flex" : "static")};
+  align-items: center;
+
   /* flex: 1 1 auto; */
   justify-content: center;
-  max-width: 320px;
-  align-items: center;
-  box-sizing: border-box;
-${(props) => {
-  return [
-    props.adapter &&
-      css`
-        @media (max-width: 749px) {
-          width: 100%;
-        }
-      `,
-  ];
-}}
 
- 
+  box-sizing: border-box;
+
+  min-width: 84px;
+  max-width: 320px;
+  min-height: 44px;
+  margin: 0 0 0 12px;
+
   padding: ${(props) => {
     if (props.size === "large") return " 40px 96px";
     if (props.size === "middle") return " 20px 48px";
     if (props.size === "small") return " 0px 24px";
   }};
-  min-width: 84px;
-  min-height: 44px;
-  margin: 0 0 0 12px;
+
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   text-align: center;
   pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
@@ -43,6 +48,7 @@ ${(props) => {
     props.disabled ? "#c8c8c8" : props.backgroundColor};
 
   font-weight: 500;
+
   line-height: normal;
   &:hover {
     background-color: ${(props) =>

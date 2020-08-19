@@ -1,5 +1,5 @@
-import React, { FC, useRef } from "react";
-import styled from "styled-components";
+import React, { FC, useRef, useState } from "react";
+import styled, { css } from "styled-components";
 
 const SectionBigWrapper = styled.div`
   font-size: 14px;
@@ -73,6 +73,7 @@ const RadioWrapper = styled.div`
   width: 100%;
   margin-bottom: 0;
 `;
+
 const RadioInput = styled.div`
   font-size: 14px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
@@ -88,60 +89,91 @@ const RadioInput = styled.div`
   white-space: nowrap;
   display: table-cell;
 `;
-const Input = styled.input`
-  word-wrap: break-word;
-  word-break: break-word;
-  -webkit-box-direction: normal;
-  white-space: nowrap;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-  appearance: none;
-  -webkit-font-smoothing: inherit;
-  background: transparent;
-  line-height: normal;
-  width: 18px;
-  height: 18px;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  cursor: pointer;
-  vertical-align: -4px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  padding: 0;
-  background-color: white;
 
-  box-shadow: 0 0 0 0 #a26b25 inset;
-  border: 1px solid;
-  border-color: #d9d9d9;
+const Input = styled.input<{ checked?: boolean }>`
+  &:focus {
+    outline-offset: 2px;
 
-  transform: scale(1);
-  /* 
-  word-wrap: break-word;
-  word-break: break-word;
-  -webkit-box-direction: normal;
-  white-space: nowrap;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-  appearance: none;
-  -webkit-font-smoothing: inherit;
-  background: transparent;
-  line-height: normal;
-  width: 18px;
-  height: 18px;
-  transition: all 0.2s ease-in-out;
-  position: relative;
-  cursor: pointer;
-  vertical-align: -4px;
-  border-radius: 50%;
-  box-sizing: border-box;
-  padding: 0;
-  background-color: white;
+    color: transparent;
+  }
 
-  border: none;
-  box-shadow: 0 0 0 10px #a26b25 inset;
-  border-color: #78501c; */
+  ${(props) => {
+    if (props.checked == true)
+      return css`
+        &:after {
+          width: 4px;
+          height: 4px;
+          margin-left: -2px;
+          margin-top: -2px;
+          background-color: #fff;
+          border-radius: 50%;
+          content: "";
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+        }
+
+        word-wrap: break-word;
+        word-break: break-word;
+        -webkit-box-direction: normal;
+        white-space: nowrap;
+        color: inherit;
+        font: inherit;
+        margin: 0;
+        appearance: none;
+        -webkit-font-smoothing: inherit;
+        background: transparent;
+        line-height: normal;
+        width: 18px;
+        height: 18px;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        cursor: pointer;
+        vertical-align: -4px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        padding: 0;
+        background-color: white;
+
+        border: none;
+        box-shadow: 0 0 0 10px #a26b25 inset;
+        border-color: #78501c;
+      `;
+    if (props.checked == false)
+      return css`
+        &:active {
+          outline-offset: 2px;
+          border: 2px solid #d9d9d9;
+          color: transparent;
+        }
+        word-wrap: break-word;
+        word-break: break-word;
+        -webkit-box-direction: normal;
+        white-space: nowrap;
+        color: inherit;
+        font: inherit;
+        margin: 0;
+        appearance: none;
+        -webkit-font-smoothing: inherit;
+        background: transparent;
+        line-height: normal;
+        width: 18px;
+        height: 18px;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+        cursor: pointer;
+        vertical-align: -4px;
+        border-radius: 50%;
+        box-sizing: border-box;
+        padding: 0;
+        background-color: white;
+
+        box-shadow: 0 0 0 0 #a26b25 inset;
+        border: 1px solid;
+        border-color: #d9d9d9;
+      `;
+  }}
 `;
 
 const RadioLabel = styled.label`
@@ -214,19 +246,35 @@ const RadioLabelAccessory = styled.span`
 export const Section: FC = () => {
   const InputRefFirst = useRef<HTMLInputElement>(null);
   const InputRefSecond = useRef<HTMLInputElement>(null);
+  const [check, setCheck] = useState(true);
   return (
     <SectionBigWrapper>
       <SectionWrapper>
         <SectionRowWrapper>
           <RadioWrapper>
             <RadioInput>
-              <Input ref={InputRefFirst} />
+              <Input
+                ref={InputRefFirst}
+                checked={check}
+                onClick={() => {
+                  if (InputRefFirst.current == null) {
+                  } else {
+                    InputRefFirst.current.focus();
+                    if (check == false) {
+                      setCheck(!check);
+                    }
+                  }
+                }}
+              />
             </RadioInput>
             <RadioLabel
               onClick={() => {
                 if (InputRefFirst.current == null) {
                 } else {
                   InputRefFirst.current.focus();
+                  if (check == false) {
+                    setCheck(!check);
+                  }
                 }
               }}
             >
@@ -240,13 +288,28 @@ export const Section: FC = () => {
         <SectionRowWrapper>
           <RadioWrapper>
             <RadioInput>
-              <Input ref={InputRefSecond} />
+              <Input
+                ref={InputRefSecond}
+                checked={!check}
+                onClick={() => {
+                  if (InputRefSecond.current == null) {
+                  } else {
+                    InputRefSecond.current.focus();
+                    if (check == true) {
+                      setCheck(!check);
+                    }
+                  }
+                }}
+              />
             </RadioInput>
             <RadioLabel
               onClick={() => {
                 if (InputRefSecond.current == null) {
                 } else {
                   InputRefSecond.current.focus();
+                  if (check == true) {
+                    setCheck(!check);
+                  }
                 }
               }}
             >

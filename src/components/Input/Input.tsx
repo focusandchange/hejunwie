@@ -9,10 +9,13 @@ import React, {
 import styled, { css } from "styled-components";
 
 const InputComponentWrapper = styled.div<InputProps>`
-  flex-grow: 1;
   position: relative;
+
   display: block;
+  flex-grow: 1;
+
   margin: 5px;
+
   ${(props) => {
     return (
       props.error &&
@@ -32,26 +35,37 @@ const InputComponent = styled.input<{
   onBlurFlagSecond?: boolean;
   onBlurFlagThird?: boolean;
 }>`
-  word-wrap: break-word;
-  -webkit-box-direction: normal;
-  font: inherit;
-  margin: 0;
-  appearance: none;
-  -webkit-font-smoothing: inherit;
-  background: transparent;
-  border: 1px transparent solid;
-  background-clip: padding-box;
-  border-radius: 5px;
   display: block;
+
   box-sizing: border-box;
   width: 100%;
+  margin: 0;
   padding: 0.9285714286em 0.7857142857em;
-  word-break: normal;
-  line-height: inherit;
-  background-color: white;
-  color: #333333;
-  border-color: #d5d5d5;
+
   transition: all 0.2s ease-out;
+  word-wrap: break-word;
+  word-break: normal;
+
+  color: #333;
+  border: 1px transparent solid;
+  border-color: #d5d5d5;
+  border-radius: 5px;
+  background: transparent;
+  background-color: white;
+  background-clip: padding-box;
+
+  font: inherit;
+  line-height: inherit;
+  -webkit-box-direction: normal;
+  appearance: none;
+  -webkit-font-smoothing: inherit;
+
+  &:focus {
+    border-color: #a26b25;
+    outline: none;
+    box-shadow: 0 0 0 1px #a26b25;
+  }
+
   ${(props) => {
     if (props.value != "")
       return css`
@@ -92,12 +106,6 @@ const InputComponent = styled.input<{
         }
       `;
   }};
-
-  &:focus {
-    outline: none;
-    border-color: #a26b25;
-    box-shadow: 0 0 0 1px #a26b25;
-  }
 `;
 
 const LabelContent = styled.div<{
@@ -107,34 +115,40 @@ const LabelContent = styled.div<{
   onBlurFlagSecond?: boolean;
   onBlurFlagThird?: boolean;
 }>`
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    sans-serif;
-  line-height: 1.3em;
-  word-wrap: break-word;
-  word-break: break-word;
-  -webkit-font-smoothing: subpixel-antialiased;
-  -webkit-box-direction: normal;
-  text-align: left;
-  margin: 0.5em 0;
-  display: block;
-  font-size: 0.8571428571em;
-  font-weight: normal;
   position: absolute;
+  z-index: 1;
   top: 0;
+
+  display: block;
+  overflow: hidden;
+
+  box-sizing: border-box;
   width: 100%;
+  margin: 0.5em 0;
   margin-top: 0.4285714286em;
   margin-left: 1px;
   padding: 0 0.9166666667em;
-  z-index: 1;
+
   user-select: none;
-  overflow: hidden;
+  transition: all 0.2s ease-out;
+  text-align: left;
   white-space: nowrap;
   text-overflow: ellipsis;
+  word-wrap: break-word;
+  word-break: break-word;
   pointer-events: none;
-  box-sizing: border-box;
-  transition: all 0.2s ease-out;
+
   color: #737373;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+  font-size: 0.8571428571em;
+  font-weight: normal;
+  line-height: 1.3em;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-box-direction: normal;
+
   ${(props) => {
     if (props.value != "")
       return css`
@@ -160,9 +174,11 @@ const LabelContent = styled.div<{
 `;
 
 const PTag = styled.div`
-  margin: 8px 0px 4px 0px;
-  color: red;
   display: none;
+
+  margin: 8px 0 4px 0;
+
+  color: red;
 `;
 
 interface InputProps {
